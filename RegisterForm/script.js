@@ -43,7 +43,7 @@ function getData(event) {
     alert("Password must be at least 6 characters long.");    
   }else if(pass1!==pass2){
     alert("Password does not match");
-  }else if(atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){
+  }else if(atposition<1 || dotposition<atposition+2 || dotposition+2>= x.length){
     alert("Please enter a valid email address")
   }else if(msg==null || msg ==""){
     alert("please enter message");
