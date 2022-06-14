@@ -8,21 +8,23 @@
 </head>
 <body>
     <div id ="result">
-<input type ="text" name = "days" id="days" required>
-<button onclick="subtract()">Subtract</button>
+<!-- <input type ="text" name = "days" id="days" required>
+<button onclick="subtract()">Subtract</button> -->
     </div>
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="moment.js"></script>
 <script>
-// $("#result").html(moment().format('MMMM Do YYYY, h:mm:ss a'))
-// // $("#result").html(moment().format('dddd'))
-// // $("#result").html(moment().format("MMM Do YY"))
-// // $("#result").html(moment().format()) 
+$("#result").html(moment().format('MMMM Do YYYY, h:mm:ss a'));
+// $("#result").html(moment().format('dddd'))
+// $("#result").html(moment().format("MMM Do YY"))
+// $("#result").html(moment().format()) 
 
-function subtract()
-{
-    $("#result").html(moment().subtract($("#days").val(),'days').calendar())
-}
+
+// function subtract()
+// {
+//     $("#result").html(moment().subtract($("#days").val(),'days').calendar())
+// }
+// $("#result").html(moment().utcOffset(0, true).format())
 </script>
 </html>
