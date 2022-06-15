@@ -1,75 +1,77 @@
-var form = document.getElementById("myform");
 
-function getData(event) {
+form = document.getElementById("myform");
+function validateform(event) {
   event.preventDefault();
-
-  /* ******* using name and getting the value **************  */
-
-  var fname = document.myform.fname.value;
-  var lname = document.myform.lname.value;
-  var pass1 = document.myform.password1.value;
-  var pass2 = document.myform.password2.value;
+  var userName = document.myform.uname.value;
   var email = document.myform.email.value;
-  var gen = document.myform.Gender.value;
-  var interests = new Array();
-  var checkboxes = document.getElementsByName("Interests");
-  for (var box of checkboxes) {
-    if (box.checked) {
-      interests.push(box.value);
+  var password = document.myform.psw.value;
+  var country = document.myform.country.value;
+  var gender = document.myform.gender;
+  var address = document.myform.address.value;
+  var lang = document.getElementsByName("lang");
+  var atposition = email.indexOf("@");
+  var dotpostion = email.lastIndexOf(".");
+  var data = new Object();
+  var i;
+  // valid = true;
+  var langArray = new Array();
+  for (i = 0; i < lang.length; i++) {
+    if (lang[i].checked) {
+      langArray.push(lang[i].value);
+      // valid = false;
     }
   }
-  var sub = document.myform.subscription.value;
-  var msg = document.myform.message.value;
-
-  var data = new Object();
-
-  data.firstname = fname;
-  data.lastname = lname;
-  data.password1 = pass1;
-  data.password2 = pass2;
-  data.email = email;
-  data.Gender = gen;
-  data.interests = interests;
-  data.subscription = sub;
-  data.message = msg;
-
-  var atposition=email.indexOf("@");  
-  var dotposition=email.lastIndexOf(".");  
-
-  if (fname==null || fname=="" || lname==null || lname=="")
-  {  
-    alert("please fill the name");  
-  }else if(pass1.length<6 || pass2.length<6){  
-    alert("Password must be at least 6 characters long.");    
-  }else if(pass1!==pass2){
-    alert("Password does not match");
-  }else if(atposition<1 || dotposition<atposition+2 || dotposition+2>= x.length){
-    alert("Please enter a valid email address")
-  }else if(msg==null || msg ==""){
-    alert("please enter message");
+  if (userName == null || userName == "") {
+    alert("Name can't be blank");
+    return false;
+  }else if (
+    atposition < 1 ||
+    dotpostion < atposition + 2 ||
+    dotpostion + 2 >= email.length
+  ) {
+    alert("Please enter a valid e-mail address:");
+    return false;
+  } else if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return false;
+  } else if (country == "select") {
+    alert("Please Select Country.");
+    return false;
+  } else if (gender.value == "") {
+    alert("Please Select Gender.");
+    return false;
+  } else if (address == "") {
+    alert("Please Provide Address.");
   }
+  // if (langArray.length == 0) {
+  //   alert("Please select lang");
+  //   return false;
+  // }
+  // if (valid) {
+  //   alert("Please Select Language.");
+  //   return false;
+  // }
+  // else if (!this.myform.checkbox.checked) {
+  //   alert("Please Select Language.");
+  //   return false;
+  // }
+  // for (i = 0; i < gender.length; i++) {
+  //   if (gender[i].checked) {
+  //     data.gender = gender[i].value;
+  //   }
+  //   if (gender[i].checked == false) {
+  //     alert("Please select gender.");
+  //     return false;
+  //   }
+  // }
 
+  data.userName = userName;
+  data.email = email;
+  data.password = password;
+  data.country = country;
+  data.gender = gender.value;
+  data.lang = langArray;
+  data.address = address;
   console.log(data);
-
-  // ******* using elements and getting the value of the form elements ********
-
-  // var fname = document.getElementById("myform").elements[0].value;
-  // var lname = document.getElementById("myform").elements[1].value;
-  // var pass = document.getElementById("myform").elements[2].value;
-  // var passr = document.getElementById("myform").elements[3].value;
-  // var email = document.getElementById("myform").elements[4].value;
-
-
-
-  // ******* directly getting data using FormData and formentries ********
-
-  // const data = new FormData(event.target);
-
-  // const value = Object.fromEntries(data.entries());
-
-  // value.interests = data.getAll("Interests");
-
-  // console.log({ value });
 }
-
-form.addEventListener("submit", getData);
+form.addEventListener("submit", validateform);
